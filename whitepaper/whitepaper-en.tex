@@ -1,0 +1,256 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % Formato a español
+\usepackage[T1]{fontenc}    % Permite utilizar otras tipografías
+\usepackage[vmargin=2.5cm,hmargin=2cm]{geometry}
+\usepackage{multicol}   % Unir columnas en tablas y formato a dos columnas
+\usepackage{multirow}   % Unir filas en tablas
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{graphicx}   % Necesario para insertar gráficas
+\usepackage{float}      % Corregir ubicación de imágenes y tablas
+%\usepackage{subfigure} % Insertar subfiguras
+%\usepackage{url}       % Hiervínculo a direcciones URL
+\usepackage{listings}
+\usepackage{flushend}
+\usepackage{minted}
+\usepackage[none]{hyphenat} % Permite utilizar el comando \sloppy
+\usepackage[small]{caption}	% Reduce el tamaño de letra utilizado en los pies de figura.
+\usepackage{hyperref}   % Agrega enlaces internos de las secciones, figuras y tablas.
+\usepackage{color}      % Definición de colores
+    \hypersetup{colorlinks=true, linkcolor=[rgb]{0,0,1}, citecolor=[rgb]{0,0,1}}
+\usepackage{xcolor}		% Permite definir un color para utilizarlo dentro del documento.
+    \definecolor{gris}{RGB}{70,70,70}	% Definiendo el color gris
+    \definecolor{negro}{RGB}{40,40,40}		% Definiendo el color negro
+
+%%%%%%%% Modificación de los espacios de los títulos de secciones %%%%%%%%%%
+\usepackage{titlesec}		% Permite reconfigurar  los títulos de las secciones y subsecciones
+\renewcommand\thesection{\Roman{section}}	% Numeración romana en las secciones
+\renewcommand\thesubsection{\Roman{subsection}}		% Numeración romana en las subsecciones
+\titlespacing*{\section}{0pt}{2.5mm}{0mm}	% Espaciado del título {espacio izquierdo}{arriba del título}{abajo del título}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}	% Espaciado del título de las secciones
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}				% Espaciado del título de las subsecciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Se define un comando \colorhrule para hacer líneas horizontales de color con 3 argumentos: color, largo, ancho.
+\newcommand{\colorhrule}[3]{\begingroup\color{#1}\rule{#2}{#3}\endgroup}
+
+\setlength{\intextsep}{1mm} % Distancia superior e inferior en objetos flotantes
+\setlength{\columnsep}{5mm} % Separación entre columnas del documento
+
+\begin{document}
+\sloppy     % Evita que las palabras se corten al saltar de línea.
+\begin{center}
+\begin{tabular}{cc}
+\multirow{2}{3.5cm}{\includegraphics[width=2cm]{img/White_icon.png}}	& \huge{\textsc{\textbf{Sister In Law}}}\\ %\vspace{5mm}
+ & \\ [3mm]
+ & \large{\textsf{\textbf{Whitepaper}}}\\ [2mm]
+ & \small{by Relentless Sister} @ sil.finance
+\end{tabular}
+\end{center}
+
+\setlength{\parindent}{0em}
+\begin{center}
+\colorhrule{negro}{16.5cm}{1.2pt}
+\end{center}
+\begin{abstract}
+\noindent \textbf{Sil.finance} \textit{https://sil.finance/} is a decentralized automatic investment platform based on smart contracts, focusing on providing users with DeFi Financial Management services. SIL provides dual-token liquidity for variable swaps, automatic LP matching, and automatic compound interests. According to factors such as annualized rate of return, safety factor, financial management cycle, etc., it automatically selects and configures products that best suit the interests of users, make complex liquidity mining to become simple. The revenue of mining will be distributed to all users in proportion, there is no intermediary, no principal commission fees. It's fair and just. The platform is jointly built by crypto enthusiasts from all over the world, and the management of the platform is entrusted to all SIL holders.
+
+\noindent SIL features a three-tier architecture: SILMaster, MatchPair and StakeGatling. SILMaster is the entry management contract, processing transactions and the distribution of SIL Token. MatchPair is responsible for matching. The matching queue adopts a first-in-last-out model to ensure that users who recharge first are matched first. When the matching party withdraws funds, the  queue adopts the last-in-first-out model. It also ensures that users with priority recharge are in a relatively safe queue position. StakeGatling is responsible for collateralizing the matched LP to the mining contract. And then according to the configuration strategy, it will automatically roll out the profit, CLAIM income and convert the income of CLAIM into LP through Swap/Mint, and re-mortgage to obtain income to ensure the maximum benefit.
+
+\noindent From the beginning, SIL Finance has been focusing on transaction-based liquidity pools. But there is a well-known function or we call that defect in the pool based on token exchange (LP), which is, impermanence loss (IL). That usually surprises new players and is rejected by experienced players. It is difficult for ordinary player to control the whole surface. In order to minimize volatility preferences, SIL introduced a smart contract-based matching engine that provides two additional solutions for current LP players, and both only require players to provide a single-side token.
+
+\noindent As a star project of the DeFi aggregator track, SIL built itself upon Ethereum, and strives to develop the ecology, to make DeFi simpler, to create more value for users, so that more people can access and participate DEFI with  inclusive financial realizations.
+The following are the core products currently in progress, a brief description of platform management, and links to active communication platforms.
+
+\vspace{2mm}
+
+\begin{center}
+\begin{tabular}{ l l | l r }
+ Token Name & SIL &  Twitter & \texttt{https://twitter.com/Sil\_Finance} \\
+ Total Issuance & 30000 & Telegram & \texttt{https://t.me/sil\_finance} \\
+ Circulation & 0 - 30000 & Discord & \texttt{https://discord.gg/jq7CpjkWUm} \\
+ Contract Address & \multicolumn{3}{r}{\texttt{0x05631e9c7a64c6eb729cbde043c127302f25787f}}
+\end{tabular}
+\end{center}
+
+\end{abstract}
+\begin{center}
+\colorhrule{gris}{16.5cm}{0.7pt}
+\end{center}
+
+
+
+\begin{multicols}{2}
+%\setlength{\parskip}{1em}
+SIL Vault Liquidity Mining profits include:
+\begin{enumerate}
+    \item Commission on underlying swapping fees
+    \item Correspondent LP stacking gain (transitive, will sell automatically by SIL Finance for principal roll-up)
+    \item SIL tokens generated from single-side pairing
+\end{enumerate}
+During mining, 0.5 percent of (principal + profit) will be subtracted to purchase SIL, which will then re-enter the minting pool. SIL token itself is also a community governance voting tool.
+
+SIL is initiated by the community and for the community. Currently, SIL community covers development, audit, and operation. Anyone who is interested in crypto can join SIL.
+
+\section{How to Solve the Defects of YFI (Yearn)? }
+Based on observation，Yearn might have the following issues:
+
+\begin{itemize}
+  \item Single token mining is unsustainable for a swap
+  \item No realistic liquidity provision
+  \item Not many stablecoin swap needs when CRV is out of DEFI
+\end{itemize}
+
+\section{SIL Core Functions}
+
+\subsection{Dual Token Mining Vaults}
+\begin{itemize}
+  \item Each user only needs to stake one token, and get the other token from others for LP mining. Currently, the APY of dual token mining is higher than single token mining.
+  \item SIL will provide swaps in cooperation with realistic liquidity, not just a simple nested loop
+  \item There's no need to buy another token for mining, therefore only need to take the risk of impermanent loss of a single token but to share a higher profit
+\end{itemize}
+
+\subsection{Compound Interest Model}
+\begin{itemize}
+  \item Deposit token into SIL and get paired as LP, stake LP into mining contract and CLAIM profit
+  \item Claim profits and convert it into two tokens with new LP pair and Stake again, Additional LP will distributed to LP pool participants according to correspondent shares
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{img/harvest1.png}
+\caption{Compound Interest Timeline}
+\label{fig:rc}
+\end{figure}
+
+\subsection{Token automatically matches LP}
+When users deposit Token into SIL, the platform will automatically pair tokens into LP for mining. And each participant will have half profits of this LP (the profits comes from the token profits after LP burns), and can withdraw Token from LP at anytime.
+
+The pair model has three tiers, which allows first comers with more secure position in the queue.
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{img/harvest2.png}
+\caption{The status of funds in queue for pairing}
+\label{fig:rc}
+\end{figure}
+As it shows in the above:
+When pairing, it will select from Priority Queue for pairing first, and then Pending Queue.
+To withdraw token, it will first withdraw from Pending Queue, and then Priority Queue, and lastly burn(LPAmount) from LP Queue, and unstake correspondent Token for final withdrawal.
+
+\subsection{Token Pair Profit}
+
+When tokens are paired into LP, it will have two kinds of profits.
+\begin{enumerate}
+  \item As LP liquidity provider, it will have AMM market making commission profit (Such as Uniswap offers  0.03 \% for market making transaction fees)
+  \item LP can stake for mining，Token that are mined (such as UNI, SUSHI) can swap further，and reform into new LP to users, therefore sharing the compound interest increase automatically
+\end{enumerate}
+
+\textbf{E.g.}: Deposit USDT and pair ETH in the pool as LP, then the user will share partial ownership of this LP(USDT), and share commission fee profits as LP transacts as well as the compound interest of LP. When the user decides to withdraw, LP will increase according to compound interests, unstake LP and return more USDT to this user, and then correspondent ETH will get into queque for the next pairing.
+
+\begin{minted}[xleftmargin=15pt,linenos]{java}
+PLP = Swap.mint(U)
+WU = Swap.burn(PLP * R)[U]
+\end{minted}
+\begin{itemize}
+    \item \texttt{PLP(pairedLP)}: pair \texttt{LPAmount}
+    \item \texttt{R(reprofit rate)}: profit rate
+    \item \texttt{U(USDTAmount)}: unstake and obtain \texttt{WU(WithdrawUSDTAmount)}
+\end{itemize}
+
+\subsection{SIL Issuance}
+When user deposits Token into SIL contract, it will issue SIL according to deposit shares. Even the pairing is unsuccessful, there will be SIL token profits as well. SIL token will be distributed equally at LP's Token0/Token1 deposit queue.
+
+\subsubsection{Distribution Calculation}
+\[ SilPerBlock = \frac{AS \times PS \times PBS}{2} \]
+\begin{itemize}
+    \item \texttt{AS(AmountShare)}: The user deposit amount share that accounts for the current queue
+    \item \texttt{PS(PoolShare)}: the pool share that accounts for the total pool
+    \item \texttt{PBS(PerBlockSIL)}: Tokens per block
+\end{itemize}
+
+\subsubsection{Distribution Rate}
+External configuration MintRegulator strategy，obtain scale，and adjust distribution rate according to issuance
+
+\[ perBlockSil =  BasePerBlockSil \times scale \]
+\[ scale = \frac{ChainLink.gasPriceCurrent}{BaseGasPrice} \]
+\begin{itemize}
+    \item \texttt{amountShare}: The user deposit amount share that accounts for the current queue
+    \item \texttt{poolShare}: the pool share that accounts for the total pool
+    \item \texttt{perBlockSil}: Token per block
+\end{itemize}
+
+\section{Governance}
+\subsection{Token Distribution}
+The total amount of SIL is 30000, minted in a near-linear fashion in approximately 6 months.
+
+\subsubsection{Community Share}
+The Community will share 68\% of the total minted tokens from liquidity mining.
+
+\subsubsection{Governance Treasury}
+The Governance Treasury will share 15\% of the total minted tokens from liquidity mining.
+
+This fund will be governed by the whole SIL community, for the greater purpose of future developments. The Treasury will be protected by Voting Contract, Multi-Sign Contract and TimeLock Contract.
+
+\subsubsection{Dev Team Share}
+The developing team will share 17\% of SIL from liquidity mining when user withdraw funds, and the developing team will share no other profits.
+
+The Developing team will use the token to cover:
+\begin{itemize}
+    \item team wage
+    \item periodical on-chain maintenance activity (price feed, SIL buy-back and re-entry)
+    \item future product development
+    \item operational costs
+\end{itemize}
+
+\subsection{Token Dynamics}
+When an investor decide to withdraw principal, sil.finance will automatically use 0.5 percent of (principal + profit) to buy back SIL Tokens and these SIL tokens will re-enter the total mining pool for continuous distribution.
+
+\subsection{Ecosystem Governance}
+Sil.finance ecosystem is made up by voting  proposals from SIL token holders. If the proposal passes the requirement of quorum (1 \% staking tokens at governance structure), and also wins the majority of support (50 \% of the votes), and the total staking of winning party should exceed 4 \% of the total supply, then it can be executed with a 5-person multi-signature wallet. Any revision must have approvals from at least 3 out of 5 wallet signatures. These signature holders will be voted by SIL holders initially and may subject to change according to future governance voting.
+
+\subsection{Transaction Fee}
+Transaction fees will adjust according to internal contract data and execution procedures.
+
+\subsection{Initial Planning}
+\begin{itemize}
+  \item sil.finance will support UNI Token and SUSHI Token at first
+\end{itemize}
+
+\subsection{Further Planning}
+\begin{itemize}
+  \item sil.finance will try to launch pools that have no impermanent losses
+  \item Will integrate DEFI borrowing and lending liquidation functions
+  \item DEFI+CEFI arbitrage strategies that are automatically executed by smart contracts
+  \item In the future, SIL may try various aspects of the business model. Possibility could be CompDelegator, which aggregates the participants’ assets into a pool and coordinates the overall strategy.
+  \item To become the automatic asset management tool/safe is the entry product of the DeFi world, and SIL Finance hopes to be used as PayPal or MatrixPort on the DeFi scenario.
+\end{itemize}
+
+\subsection{Case Analysis}
+\begin{itemize}
+  \item Type 1. Pledge unilateral tokens, and bear with the relative value loss/gain or token count loss/gain.
+  \item Type 2. Pledge unilateral tokens, one player won't lose on relative value loss/gain or token counting loss/gain, another player may lose on relative value loss/gain or token counting loss/gain.
+\end{itemize}
+
+Definitions:
+\begin{itemize}
+  \item \textbf{Relative value of tokens}: for instance, in a trading pair like \texttt{M/N}:
+  \begin{itemize}
+    \item The sum of \texttt{M} divided by sum of \texttt{N} is the value of \texttt{N} relative to \texttt{M}
+    \item The sum of \texttt{N} divided by sum of \texttt{M} is the value of \texttt{M} relative to \texttt{N}
+  \end{itemize}
+  \item \textbf{Token count}: the absolute number of tokens
+\end{itemize}
+
+\subsubsection{Type 1, RELATIVE-VALUE BELIEVERS}
+For example, Player A and Player B want to try their tricks in the LP pool. A owns 1 ETH and is unwilling to hold USDC because they believe in the relative value of ETH compared to USDC. B owns 600 USDC and is unwilling to hold ETH. The value belief is the same. Usually, they are unwilling to sell half of their assets to missing assets in order to provide liquidity to the LP pool because they do not want to hold missing assets. The firm belief in ETH makes Player A actually bet on ETH and is willing to bear the risk of ETH loss. If A or B must sell half of their assets to the missing token, then they can only bet 1/2 of the value difference of ETH or USDC (and implicitly get the value difference of USDC or ETH on the other side) 1/2), and they may not like to choose this safer path (less relative value loss).
+
+Yes, SilFinance provides an option for relative value believers, namely Type 1. A player only needs to deposit ETH or USDC, and it will automatically match the other half. Now players can safely bet their assets with 100\% satisfaction.
+
+\subsubsection{Type 2, TOKEN HOLDERS}
+For example, agian, Player A and Player B want to try their tricks in the LP pool. A has 1 ETH and is unwilling to hold USDC because they only want ETH, B has 600
+USDC and unwilling to hold ETH, etc. Usually, they don't care about selling half of their assets to lost assets in order to provide liquidity to the LP pool, because they don't want to hold the missing assets. In addition, they cannot accept the decrease in the amount of ETH or USDC, they can only accept the constant or absolute increase. They may sell half of their shares to participate in LP mining, but they will sell another asset immediately after exiting the pool. Yes, SilFinance imitates this user behavior by automatically selling after the pairing is cancelled, because both parties only need to deposit ETH or USDC, and Sil will automatically match and pair, saving users a lot of extra manual work and saving slippage.
+
+The effect of this is that one of the player A or player B usually do not lose the absolute number of tokens, the remaining party may lose due to IL, but SilFinance will automatically sell the profited tokens from the gainer of A or B and convert to loss token of A or B, in order to sooth the pain. SilFinance tried it's best to restore both party's assets to the initial ratio (1/600), if the overall compound interest income is good, and the slippage fee of one transaction is exceeded, both party may have to chance to gain absolute number of tokens.
+
+\end{multicols}
+\end{document}

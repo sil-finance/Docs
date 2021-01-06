@@ -1,0 +1,56 @@
+name: Whitepaper-Compiler
+
+on:
+  push:
+    tags:
+      - whitepaper/v*
+
+jobs:
+  whitepaper-compile:
+    name: Compile whitepaper
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document EN
+        uses: dante-ev/latex-action@master
+        with:
+          working_directory: whitepaper
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -latexoption=-shell-escape -latexoption=-f
+          root_file: whitepaper-en.tex
+      - name: Compile LaTeX document CN
+        uses: dante-ev/latex-action@master
+        with:
+          working_directory: whitepaper
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -latexoption=-shell-escape -latexoption=-f
+          root_file: whitepaper-cn.tex
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset EN
+        id: upload-release-asset-en
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: whitepaper/whitepaper-en.pdf
+          asset_name: whitepaper-en.pdf
+          asset_content_type: application/pdf
+      - name: Upload Release Asset CN
+        id: upload-release-asset-cn
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: whitepaper/whitepaper-cn.pdf
+          asset_name: whitepaper-cn.pdf
+          asset_content_type: application/pdf
