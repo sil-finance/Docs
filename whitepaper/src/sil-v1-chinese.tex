@@ -1,0 +1,226 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[vmargin=2.5cm,hmargin=2cm]{geometry}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage{subfigure} % Insertar subfiguras
+%\usepackage{url}       % Hiervínculo a direcciones URL
+\usepackage{listings}
+\usepackage{flushend}
+\usepackage{minted}
+\usepackage[none]{hyphenat}
+\usepackage[small]{caption}
+\usepackage{hyperref}
+\usepackage{color}
+    \hypersetup{colorlinks=true, linkcolor=[rgb]{0,0,1}, citecolor=[rgb]{0,0,1}}
+\usepackage{xcolor}
+    \definecolor{gris}{RGB}{70,70,70}
+    \definecolor{negro}{RGB}{40,40,40}
+
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Roman{subsection}}
+\titlespacing*{\section}{0pt}{2.5mm}{0mm}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\colorhrule}[3]{\begingroup\color{#1}\rule{#2}{#3}\endgroup}
+
+\setlength{\intextsep}{1mm}
+\setlength{\columnsep}{5mm}
+
+\begin{document}
+\sloppy
+\begin{center}
+\begin{tabular}{cc}
+\multirow{2}{3.5cm}{\includegraphics[width=2cm]{img/White_icon.png}}	& \huge{\textsc{\textbf{Sister In Law}}}\\ %\vspace{5mm}
+ & \\ [3mm]
+ & \Large{\textsf{\textbf{白皮书}}}\\ [2mm]
+ & \small{by 不知疲倦的小姨子} @ sil.finance
+\end{tabular}
+\end{center}
+
+\begin{center}
+\colorhrule{negro}{16.5cm}{1.2pt}
+\end{center}
+\begin{abstract}
+\noindent \textbf{Sil.finance} \textit{https://sil.finance/} Sil 是一个基于智能合约的去中心化被动投资平台，专注为用户提供DeFi聚合理财服务。是一种战略性金融工具，可帮助个人在DeFi市场上套利，您可以将此工具视为流动性构造器和收益汇总器，也可以将其视为衍生工具，可以对冲您的资金，以符合宏观财务计划。SIL为众多Swap提供双币种流动性，自动LP配对，自动获取复利，根据年化收益率、安全系数、理财周期等因素，自动选择和配置最符合广大用户利益的产品，让复杂的流动性挖矿变得无比简单。挖矿收益将按照比例分发给所有用户，没有中间商，没有本金抽成，公平公正。平台由各地加密货币参与者共同建设，平台的管理委托所有SIL持有人治理。
+
+SIL的特性为三层架构: SILMaster, MatchPair 和 StakeGatling。 SILMaster为入口管理合约，处理交易和SIL Token的分发。 MatchPair负责配对，配对队列采用先进后出的模型,保证先充值的用户优先配对。当配对方撤出资金提现时候,解队队列采用后进先出模型. 同样确保优先充值的用户，处于相对安全的队列位置。 StakeGatling 负责将配对的LP抵押给挖矿合约,并根据配置策略，自动进行利滚利，CLAIM收益并将CLAIM的收益通过Swap/Mint 转换为LP，重新抵押获取收益,保证利益最大化。
+
+从一开始，SilFinance一直专注于基于交易的流动性池。但是基于代币交换（LP）的池中有一个众所周知的功能或者称之为缺陷，即无常损失（IL），通常会使新玩家感到吃惊，并被经验丰富的玩家拒绝，一般人很难控制整个盘面。为了最大程度地降低波动性偏好，Sil引入了一个基于智能合约的匹配引擎，该引擎为当前的LP玩家提供了两种额外的解决方案，并且两者都只要求玩家提供单方代币。
+
+SIL作为DEFI聚合器赛道的明星项目，立足以太坊，努力发展生态，让DEFI更简单，为用户创造价值，让更多的人都可以接触并理财DEFI，实现普惠金融
+以下是目前进行中核心产品，平台管理简要说明，和链接到活跃的交流平台。
+
+\vspace{2mm}
+
+\begin{center}
+\begin{tabular}{ l l | l r }
+ 代币名称 & SIL & Twitter & \texttt{https://twitter.com/Sil\_Finance} \\
+ 发行总量 & 30000 & Telegram & \texttt{https://t.me/sil\_finance} \\
+ 流通量 & 30000  \\
+ 合约地址 & 0x
+\end{tabular}
+\end{center}
+
+\end{abstract}
+\begin{center}
+\colorhrule{gris}{16.5cm}{0.7pt}
+\end{center}
+
+
+
+\begin{multicols}{2}
+SIL机枪池挖矿所得收入包括：
+\begin{enumerate}
+    \item 底层swap手续费返佣
+    \item 在底层swap提供流动性得到的LP的抵押收益(此收益通过SIL Finance自动卖出LP的抵押收益并转成本金来体现)
+    \item 通过成功配对获得的SIL代币
+\end{enumerate}
+挖矿提取时会扣除（本金+收益）的千五并用此资金回购SIL平台币，并重新投入总挖矿池继续由代币分配逻辑产出。SIL代币同时也是社区治理投票的工具。
+
+SIL项目由社区发起，社区自治。目前SIL社区主要有开发，审计，运营三大板块，任何一个对加密感兴趣得人都可以参与到SIL的发展。
+
+从传统的角度看，Yearn（YFI/YFII）的工作就像资产管理代理一样，它将客户的资金汇总打包，然后将这些资金抵押到其他协议库中以产生收益。关键要点是这些基于贷款池的单令牌收益池的收益比不过诸如Uniswap和Sushiswap等基于流动性池的表现，这些池将大量资金注入交易流动性池中，而不是向贷款协议池中注入更多资金，一般来说交易业务要比借贷业务高频得多。
+
+如今，YFI/ YFII不太受欢迎，YFI /YFII进入矿池，矿池会担心利润被耗尽。而且从长远来看，单令牌池不可持续
+
+\section{解决YFI(Yearn)的缺陷？}
+基于观察，Yearn可能有如下问题：
+\begin{itemize}
+  \item 单币种挖矿对于SWAP不可持续
+  \item 没有真实提供流动性
+  \item CRV脱离DEFI也没有那么多稳定币互换需求
+\end{itemize}
+
+\section{SIL核心功能}
+
+\subsection{双币种挖矿机枪池}
+\begin{itemize}
+  \item 每个用户只需要抵押一个单边币种，就可以拼团LP挖矿，目前双币种APY普遍高于单币种挖矿
+  \item SIL会给合作SWAP带去真实提供流动性.而非纯粹套娃
+  \item 无需去买另一个币挖矿，各自承担一个币的无偿，但是获得了高额年化收益
+\end{itemize}
+
+\subsection{复利模型}
+\begin{itemize}
+  \item 将Token存入SIL就会配对为LP，Stake LP到挖矿合约CLAIM收益
+  \item CLAIM收益在换成2个币组成新LP重新Stake。且新增的LP按照份额,分发给当前LP池子用户
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{img/harvest1.png}
+\caption{复利时序图}
+\label{fig:rc}
+\end{figure}
+
+\subsection{Token自动配对LP}
+用户充值Token到SIL，将会自动配对为LP进行挖矿,同时用户持有此LP的一半权益(即此LP收益Burn之后,相应的Token收益), 可随时选择从LP中提现Token。
+
+配对模型为三层模型,保证先进入者拥有更安全的队列位置。
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{img/harvest2.png}
+\caption{配对队列资金流动状态机}
+\label{fig:rc}
+\end{figure}
+如上图所示:
+当进行充值配对, 会先从Priority Queue 中选取进行配对,然后从Pending Queue 中选取配对。
+当用户提现Token, 优先从Pending Queue中提现 Token,然后从Priority Queue中提现Token, 最后从 LP Queue中 burn(LPAmount), 解押出相应的Token 进行提现。
+
+\subsection{Token配对收益}
+Token配对为LP, 会有两层收益。
+\begin{enumerate}
+  \item 作为LP 流动性提供商, 享有自动做市的手续费收益(例如 Uniswap为 0.03 \% 交易手续费)
+  \item LP 去挖去做Stake挖矿，挖出的Token（UNI,SUSHI等）进行swap，重新组成LP分发给用户，享受被动复利增长
+\end{enumerate}
+例如: 充值USDT会和池子中的ETH配对为LP，用户即拥有此LP(USDT)部分的所有权, 同时拥有LP交易的手续费收益, LP复利收益。当用户选择退出时候，LP会根据复利情况增多，解押出来更多的USDT返还给用户, 与其对应的ETH则重新进入配对队列准备下一次配对。
+\begin{minted}[xleftmargin=15pt,linenos]{java}
+PLP = Swap.mint(U)
+WU = Swap.burn(PLP * R)[U]
+\end{minted}
+PLP(pairedLP): 配对LPAmount\\
+R(reprofit rate)：收益率\\
+U(USDT amount)：解押获取WU(USDTAmount)
+
+\subsection{SIL分发}
+用户充值Token进入SIL合约, 会根据充值的份额进行SIL Token的分发，即使没有配对成功,也有SIL Token收益。 SIL Token在LP的Token0/Token1充值队列进行平分。
+
+\subsubsection{分发计算}
+\[ SilPerBlock = \frac{AS \times PS \times PBS}{2} \]
+\texttt{AS(AmountShare)}: 用户充值金额占当前队列份额\\
+\texttt{PS(poolShare)}: 池子占总池子份额\\
+\texttt{PBS(perBlockSil)}：每块出币数量
+
+\subsubsection{分发速率}
+外部配置MintRegulator策略，获取scale，在发币基准上,调整发放比例
+
+\[ perBlockSil =  BasePerBlockSil \times scale \]
+\[ scale = \frac{ChainLink.gasPriceCurrent}{BaseGasPrice} \]
+
+\section{Governance治理}
+\subsection{代币分配}
+SIL总量3万个，零预挖，30000个进行挖矿，SIL开发团队会得到挖矿收益SIL的10 \% ，除此之外开发团队不分任何收益。
+
+开发团队将会使用此资金用来覆盖:
+\begin{itemize}
+    \item 团队人员开销
+    \item 定期链上操作 (喂价机，SIL回购和重回矿池)
+    \item 未来产品开发
+    \item 运营开支
+\end{itemize}
+
+\subsection{代币循环}
+投资者在退出本金时，sil.finance会自动将（本金+收益）的千分之五作为回购金，全部用于回购SIL代币，并重新投入总挖矿池继续由代币分配逻辑产出。
+
+\subsection{产品治理}
+Sil.finance生态系统是由SIL持有人治理以投票决定提案.提案如果通过法定人数(1 \% 抵押代币在治理结构),以及赢得多数支持 (50 \% 的票选)且多数的抵押额超过4 \%，便可以通过5人多签名钱包而实施.任何修改必须由5个钱包签名者中的3个批准.这些钱包签名者是由SIL持有人投票通过的,但可能会因未来的治理票而更改.
+
+\subsection{交易手续费}
+费用会根据合约内部数据和执行步骤因人因事件而异。
+
+\subsection{初期规划}
+\begin{enumerate}
+  \item sil.finance初始将支持UNI Token和Sushi Token
+\end{enumerate}
+
+\subsection{后续规划}
+\begin{enumerate}
+  \item sil.finance将尝试推出一批减少无常损失的池
+  \item 整合DEFI借贷清算功能
+  \item DEFI+CEFI套利做成策略，由合约自动执行
+  \item 将来，Sil可能会尝试商业模式的各个方面，一种可能是CompDelegator，将参与者的资产汇总到一个池中，并统筹整体策略。
+  \item 自动资产管理工具/保险柜是DeFi世界的入门产品，Sil Finance希望自己以此为PayPal或MatrixPort。
+\end{enumerate}
+
+\subsection{案例分析}
+\begin{enumerate}
+  \item 类型1. 质押单侧代币，并承担相对价值损失/收益和代币计数损失/收益。
+  \item 类型2. 质押单侧代币，某侧无相对价值损失/收益和代币计数损失/收益，某侧有相对价值损失/收益和代币计数损失/收益。
+\end{enumerate}
+定义：
+\begin{itemize}
+  \item 代币相对价值：比如在\texttt{M/N}这样的交易对中：
+  \begin{itemize}
+    \item \texttt{M}总数量除以\texttt{N}总数量是\texttt{N}相对\texttt{M}的价值
+    \item \texttt{N}总数量除以\texttt{M}总数量是\texttt{M}相对\texttt{N}的价值
+  \end{itemize}
+  \item 代币计数：绝对代币数量
+\end{itemize}
+
+\subsubsection{类型1，价值信仰者}
+例如，玩家A和玩家B想要在LP池中尝试他们的技能。A拥有1个ETH并且不愿意持有USDC，因为他们相信ETH相比较于USDC的相对价值，B拥有600个USDC并且不愿意持有ETH，价值信仰同理。通常，他们不愿将其资产的一半出售给缺失资产，以便为LP池提供流动性，因为它们不想持有缺失资产。对ETH的坚定信念使玩家A实际上押注了ETH，而且愿意承受ETH亏损的风险。如果A或B必须将其资产的一半出售给缺失的代币，那么他们只能押注ETH或USDC的价值差异的1/2（而隐含地获得另一侧的USDC或ETH的价值差异的1/2），而他们可能不会喜欢选择这种更安全的路径（较少的相对价值损失）。好的，SilFinance为相对价值信仰者提供了一个选项，即\texttt{类型1}，一个玩家只需要存入ETH或USDC，它就会自动匹配配对另一半，现在玩家可以放心地将其资产押注100％，感到满意。
+
+\subsubsection{类型2，币本位玩家}
+例如，玩家A和玩家B想要在LP池中尝试他们的技能。
+ A有1个ETH并且不愿意持有USDC，因为他们只想要ETH，B有600个USDC并且不愿意持有ETH，等等。通常，他们不在乎将其资产的一半出售给丢失的资产，以便为LP池提供流动性，因为他们不想持有缺失的资产。此外，他们不能接受ETH或USDC的数量变少了，他们只能接受不变或绝对数量增加。他们可能会出售一半的股份来参与LP采矿，但是会在退出池子后立即出售另一项资产。好的，SilFinance通过在配对解除后自动出售来模仿这种用户行为，因为双方都只需要存入ETH或USDC，Sil会自动匹配配对，为用户节省了很多额外的手工工作并节省了滑点。这样的效果是，玩家A或者玩家B中币绝对数量获利的一方，通常不会损失绝对代币数量；损失的一方，其损失会由SilFinance自动将A或B的获利部分卖出来弥补，并尝试恢复到初始比率（1/600），同时如果整体复利收益还不错的话，且超过一次交易的滑点费用，A或者B都有可能会增加代币绝对数量。
+
+\end{multicols}
+\end{document}
