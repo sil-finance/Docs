@@ -1,44 +1,42 @@
 \documentclass[11pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{xeCJK}
-\usepackage[english]{babel} % Formato a español
-\usepackage[T1]{fontenc}    % Permite utilizar otras tipografías
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
 \usepackage[vmargin=2.5cm,hmargin=2cm]{geometry}
-\usepackage{multicol}   % Unir columnas en tablas y formato a dos columnas
-\usepackage{multirow}   % Unir filas en tablas
-\usepackage{graphicx}   % Necesario para insertar gráficas
-\usepackage{float}      % Corregir ubicación de imágenes y tablas
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
 %\usepackage{subfigure} % Insertar subfiguras
 %\usepackage{url}       % Hiervínculo a direcciones URL
 \usepackage{listings}
 \usepackage{flushend}
 \usepackage{minted}
-\usepackage[none]{hyphenat} % Permite utilizar el comando \sloppy
-\usepackage[small]{caption}	% Reduce el tamaño de letra utilizado en los pies de figura.
-\usepackage{hyperref}   % Agrega enlaces internos de las secciones, figuras y tablas.
-\usepackage{color}      % Definición de colores
+\usepackage[none]{hyphenat}
+\usepackage[small]{caption}
+\usepackage{hyperref}
+\usepackage{color}
     \hypersetup{colorlinks=true, linkcolor=[rgb]{0,0,1}, citecolor=[rgb]{0,0,1}}
-\usepackage{xcolor}		% Permite definir un color para utilizarlo dentro del documento.
-    \definecolor{gris}{RGB}{70,70,70}	% Definiendo el color gris
-    \definecolor{negro}{RGB}{40,40,40}		% Definiendo el color negro
+\usepackage{xcolor}
+    \definecolor{gris}{RGB}{70,70,70}
+    \definecolor{negro}{RGB}{40,40,40}
 
-%%%%%%%% Modificación de los espacios de los títulos de secciones %%%%%%%%%%
-\usepackage{titlesec}		% Permite reconfigurar  los títulos de las secciones y subsecciones
-\renewcommand\thesection{\Roman{section}}	% Numeración romana en las secciones
-\renewcommand\thesubsection{\Roman{subsection}}		% Numeración romana en las subsecciones
-\titlespacing*{\section}{0pt}{2.5mm}{0mm}	% Espaciado del título {espacio izquierdo}{arriba del título}{abajo del título}
-\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}	% Espaciado del título de las secciones
-\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}				% Espaciado del título de las subsecciones
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Roman{subsection}}
+\titlespacing*{\section}{0pt}{2.5mm}{0mm}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Se define un comando \colorhrule para hacer líneas horizontales de color con 3 argumentos: color, largo, ancho.
 \newcommand{\colorhrule}[3]{\begingroup\color{#1}\rule{#2}{#3}\endgroup}
 
-\setlength{\intextsep}{1mm} % Distancia superior e inferior en objetos flotantes
-\setlength{\columnsep}{5mm} % Separación entre columnas del documento
+\setlength{\intextsep}{1mm}
+\setlength{\columnsep}{5mm}
 
 \begin{document}
-\sloppy     % Evita que las palabras se corten al saltar de línea.
+\sloppy
 \begin{center}
 \begin{tabular}{cc}
 \multirow{2}{3.5cm}{\includegraphics[width=2cm]{img/White_icon.png}}	& \huge{\textsc{\textbf{Sister In Law}}}\\ %\vspace{5mm}
@@ -67,8 +65,8 @@ SIL作为DEFI聚合器赛道的明星项目，立足以太坊，努力发展生�
 \begin{tabular}{ l l | l r }
  代币名称 & SIL & Twitter & \texttt{https://twitter.com/Sil\_Finance} \\
  发行总量 & 30000 & Telegram & \texttt{https://t.me/sil\_finance} \\
- 流通量 & 0 - 30000 & Discord & \texttt{https://discord.gg/jq7CpjkWUm} \\
- 合约地址 & \multicolumn{3}{r}{\texttt{0x05631e9c7a64c6eb729cbde043c127302f25787f}}
+ 流通量 & 30000  \\
+ 合约地址 & 0x
 \end{tabular}
 \end{center}
 
@@ -86,7 +84,7 @@ SIL机枪池挖矿所得收入包括：
     \item 在底层swap提供流动性得到的LP的抵押收益(此收益通过SIL Finance自动卖出LP的抵押收益并转成本金来体现)
     \item 通过成功配对获得的SIL代币
 \end{enumerate}
-挖矿提取时会扣除SIL收益的20\%并用此资金回购SIL平台币，并重新投入总挖矿池继续由代币分配逻辑产出。SIL代币同时也是社区治理投票的工具。
+挖矿提取时会扣除（本金+收益）的千五并用此资金回购SIL平台币，并重新投入总挖矿池继续由代币分配逻辑产出。SIL代币同时也是社区治理投票的工具。
 
 SIL项目由社区发起，社区自治。目前SIL社区主要有开发，审计，运营三大板块，任何一个对加密感兴趣得人都可以参与到SIL的发展。
 
@@ -168,21 +166,10 @@ U(USDT amount)：解押获取WU(USDTAmount)
 \[ scale = \frac{ChainLink.gasPriceCurrent}{BaseGasPrice} \]
 
 \section{Governance治理}
-\subsection{Token Distribution}
-SIL总量30000颗，零预挖，将在约6个月左右的时间近线性释放。
+\subsection{代币分配}
+SIL总量3万个，零预挖，30000个进行挖矿，SIL开发团队会得到挖矿收益SIL的10 \% ，除此之外开发团队不分任何收益。
 
-\subsubsection{Community Share}
-社区将从流动性挖矿中分得总量的68\%比例的SIL代币。
-
-\subsubsection{Governance Treasury}
-社区治理金库将从流动性挖矿中分得总量的15\%比例的SIL代币。
-
-此金库将由社区投票治理，以决定资金去向。此金库将由投票合约，多签合约和时间锁合约共同保护。
-
-\subsubsection{Dev Team Share}
-开发团队将从流动性挖矿中分得总量17\%比例的SIL代币，除此之外不分任何收益。
-
-开发团队将会使用此资金用来覆盖：
+开发团队将会使用此资金用来覆盖:
 \begin{itemize}
     \item 团队人员开销
     \item 定期链上操作 (喂价机，SIL回购和重回矿池)
@@ -191,7 +178,7 @@ SIL总量30000颗，零预挖，将在约6个月左右的时间近线性释放�
 \end{itemize}
 
 \subsection{代币循环}
-投资者在退出本金时，sil.finance会自动将SIL收益的20\%作为回购金，全部用于回购SIL代币，并重新投入总挖矿池继续由代币分配逻辑产出。
+投资者在退出本金时，sil.finance会自动将（本金+收益）的千分之五作为回购金，全部用于回购SIL代币，并重新投入总挖矿池继续由代币分配逻辑产出。
 
 \subsection{产品治理}
 Sil.finance生态系统是由SIL持有人治理以投票决定提案.提案如果通过法定人数(1 \% 抵押代币在治理结构),以及赢得多数支持 (50 \% 的票选)且多数的抵押额超过4 \%，便可以通过5人多签名钱包而实施.任何修改必须由5个钱包签名者中的3个批准.这些钱包签名者是由SIL持有人投票通过的,但可能会因未来的治理票而更改.

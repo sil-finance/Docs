@@ -1,45 +1,43 @@
 \documentclass[11pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel} % Formato a español
-\usepackage[T1]{fontenc}    % Permite utilizar otras tipografías
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
 \usepackage[vmargin=2.5cm,hmargin=2cm]{geometry}
-\usepackage{multicol}   % Unir columnas en tablas y formato a dos columnas
-\usepackage{multirow}   % Unir filas en tablas
+\usepackage{multicol}
+\usepackage{multirow}
 \usepackage{enumitem}
 \setlist{nosep}
-\usepackage{graphicx}   % Necesario para insertar gráficas
-\usepackage{float}      % Corregir ubicación de imágenes y tablas
-%\usepackage{subfigure} % Insertar subfiguras
-%\usepackage{url}       % Hiervínculo a direcciones URL
+\usepackage{graphicx}
+\usepackage{float}
+%\usepackage{subfigure}
+%\usepackage{url}
 \usepackage{listings}
 \usepackage{flushend}
 \usepackage{minted}
-\usepackage[none]{hyphenat} % Permite utilizar el comando \sloppy
-\usepackage[small]{caption}	% Reduce el tamaño de letra utilizado en los pies de figura.
-\usepackage{hyperref}   % Agrega enlaces internos de las secciones, figuras y tablas.
-\usepackage{color}      % Definición de colores
+\usepackage[none]{hyphenat}
+\usepackage[small]{caption}
+\usepackage{hyperref}
+\usepackage{color}
     \hypersetup{colorlinks=true, linkcolor=[rgb]{0,0,1}, citecolor=[rgb]{0,0,1}}
-\usepackage{xcolor}		% Permite definir un color para utilizarlo dentro del documento.
-    \definecolor{gris}{RGB}{70,70,70}	% Definiendo el color gris
-    \definecolor{negro}{RGB}{40,40,40}		% Definiendo el color negro
+\usepackage{xcolor}
+    \definecolor{gris}{RGB}{70,70,70}
+    \definecolor{negro}{RGB}{40,40,40}
 
-%%%%%%%% Modificación de los espacios de los títulos de secciones %%%%%%%%%%
-\usepackage{titlesec}		% Permite reconfigurar  los títulos de las secciones y subsecciones
-\renewcommand\thesection{\Roman{section}}	% Numeración romana en las secciones
-\renewcommand\thesubsection{\Roman{subsection}}		% Numeración romana en las subsecciones
-\titlespacing*{\section}{0pt}{2.5mm}{0mm}	% Espaciado del título {espacio izquierdo}{arriba del título}{abajo del título}
-\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}	% Espaciado del título de las secciones
-\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}				% Espaciado del título de las subsecciones
+\usepackage{titlesec}
+\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Roman{subsection}}
+\titlespacing*{\section}{0pt}{2.5mm}{0mm}
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Se define un comando \colorhrule para hacer líneas horizontales de color con 3 argumentos: color, largo, ancho.
 \newcommand{\colorhrule}[3]{\begingroup\color{#1}\rule{#2}{#3}\endgroup}
 
-\setlength{\intextsep}{1mm} % Distancia superior e inferior en objetos flotantes
-\setlength{\columnsep}{5mm} % Separación entre columnas del documento
+\setlength{\intextsep}{1mm}
+\setlength{\columnsep}{5mm}
 
 \begin{document}
-\sloppy     % Evita que las palabras se corten al saltar de línea.
+\sloppy
 \begin{center}
 \begin{tabular}{cc}
 \multirow{2}{3.5cm}{\includegraphics[width=2cm]{img/White_icon.png}}	& \huge{\textsc{\textbf{Sister In Law}}}\\ %\vspace{5mm}
@@ -89,7 +87,7 @@ SIL Vault Liquidity Mining profits include:
     \item Correspondent LP stacking gain (transitive, will sell automatically by SIL Finance for principal roll-up)
     \item SIL tokens generated from single-side pairing
 \end{enumerate}
-During mining, 20 percent of SIL profit will be subtracted to re-purchase SIL, which will then re-enter the minting pool. SIL token itself is also a community governance voting tool.
+During mining, 0.5 percent of (principal + profit) will be subtracted to purchase SIL, which will then re-enter the minting pool. SIL token itself is also a community governance voting tool.
 
 SIL is initiated by the community and for the community. Currently, SIL community covers development, audit, and operation. Anyone who is interested in crypto can join SIL.
 
@@ -184,15 +182,15 @@ External configuration MintRegulator strategy，obtain scale，and adjust distri
 The total amount of SIL is 30000, minted in a near-linear fashion in approximately 6 months.
 
 \subsubsection{Community Share}
-The Community will share 68\% of the total minted tokens from liquidity mining.
+The Community will share 68\% of the total minted tokens from effective liquidity mining.
 
 \subsubsection{Governance Treasury}
-The Governance Treasury will share 15\% of the total minted tokens from liquidity mining.
+The Governance Treasury will share 15\% of the total minted tokens from effective liquidity mining.
 
 This fund will be governed by the whole SIL community, for the greater purpose of future developments. The Treasury will be protected by Voting Contract, Multi-Sign Contract and TimeLock Contract.
 
 \subsubsection{Dev Team Share}
-The developing team will share 17\% of SIL from liquidity mining when user withdraw funds, and the developing team will share no other profits.
+The developing team will share 17\% of SIL from effective liquidity mining when user withdraw funds, and the developing team will share no other profits.
 
 The Developing team will use the token to cover:
 \begin{itemize}
@@ -202,8 +200,8 @@ The Developing team will use the token to cover:
     \item operational costs
 \end{itemize}
 
-\subsection{Token Dynamics}
-When an investor decide to withdraw principal, sil.finance will automatically use 20 percent of SIL profit to buy back SIL Tokens and these SIL tokens will re-enter the total mining pool for continuous distribution.
+\subsection{Token Circulation}
+When an investor decide to withdraw principal, sil.finance will automatically use 0.5 percent of (principal + profit) to buy back SIL Tokens and these SIL tokens will re-enter the total mining pool for continuous distribution.
 
 \subsection{Ecosystem Governance}
 Sil.finance ecosystem is made up by voting  proposals from SIL token holders. If the proposal passes the requirement of quorum (1 \% staking tokens at governance structure), and also wins the majority of support (50 \% of the votes), and the total staking of winning party should exceed 4 \% of the total supply, then it can be executed with a 5-person multi-signature wallet. Any revision must have approvals from at least 3 out of 5 wallet signatures. These signature holders will be voted by SIL holders initially and may subject to change according to future governance voting.
